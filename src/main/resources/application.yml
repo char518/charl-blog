@@ -1,0 +1,9 @@
+server:
+  port: 8088
+  #jpa
+  jpa:
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+      format_sql: true
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
