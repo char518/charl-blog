@@ -2,9 +2,10 @@ package com.charl.blog.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @program: blog
@@ -15,14 +16,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "bl_user")
-public class User implements Serializable {
-
-    /**
-     * 主键id
-     */
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+public class User extends BaseDomin implements Serializable {
 
     /**
      * 用户名
@@ -71,24 +65,5 @@ public class User implements Serializable {
      */
     @Column(name = "status")
     private Integer status = 0;
-
-    /**
-     * 删除标志：0.未删除 1.已删除
-     */
-    @Column(name = "del_flag")
-    private Integer delFlag = 0;
-
-    /**
-     * 添加时间
-     */
-    @Column(name = "add_time")
-    private Date addTime;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private Date updateTime;
-
 
 }

@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'com.charl'
+group = 'com.charl'compile 'org.springframework.boot:spring-boot-starter-logging'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -26,17 +26,18 @@ repositories {
 
 
 dependencies {
+//    spring boot
     compile('org.springframework.boot:spring-boot-starter-aop')
     compile('org.springframework.boot:spring-boot-starter-web')
-    compileOnly('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
+    compile 'org.springframework.boot:spring-boot-starter-logging'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    // Use MySQL Connector-J
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+//    druid
     compile 'mysql:mysql-connector-java'
-    // druid mysql connect pool
-    compile 'com.alibaba:druid:1.1.10'
     compile 'com.alibaba:druid-spring-boot-starter:1.1.10'
+    compile 'com.alibaba:druid:1.1.10'
+
+    compileOnly('org.projectlombok:lombok')
     compile 'io.springfox:springfox-swagger2:2.9.2'
     compile 'io.springfox:springfox-swagger-ui:2.9.2'
 
