@@ -13,8 +13,8 @@ import java.io.Serializable;
  * @author: charl
  * @create: 2018-07-20 17:29
  **/
-@Entity
 @Data
+@Entity
 @Table(name = "bl_comments")
 public class Comments extends BaseDomin implements Serializable {
 

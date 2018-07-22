@@ -2,10 +2,7 @@ package com.charl.blog.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +13,7 @@ import java.util.Date;
  * @create: 2018-07-20 17:20
  **/
 @Data
+@MappedSuperclass
 public class BaseDomin implements Serializable {
 
     /**
@@ -23,6 +21,7 @@ public class BaseDomin implements Serializable {
      */
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     /**
