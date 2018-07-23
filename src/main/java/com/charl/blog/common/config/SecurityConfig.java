@@ -8,14 +8,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
         authorizeRequests() //定义哪些URL需要保护
-        .antMatchers("/","/swagger-ui.html").permitAll()
+        .antMatchers("/","/swagger-ui*").permitAll()
         .and()
         .formLogin()
                 .loginPage("/login")

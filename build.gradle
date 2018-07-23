@@ -33,6 +33,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-security'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework.security:spring-security-test'
 //    druid
     compile 'mysql:mysql-connector-java'
     compile 'com.alibaba:druid-spring-boot-starter:1.1.10'
