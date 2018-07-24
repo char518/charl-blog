@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @create: 2018-07-20 13:46
  **/
 @Data
-public class BasePageVo<T> implements Serializable {
+public class BasePageVo implements Serializable {
 
     private int pageNo = 1;
 

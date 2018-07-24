@@ -1,5 +1,7 @@
 package com.charl.blog.service;
 
+import com.charl.blog.entity.Category;
+
 /**
  * @program: blog
  * @description:
@@ -8,6 +10,6 @@ package com.charl.blog.service;
  **/
 public interface ICategoryService {
 
-
+    int addCategory(Category category);
 
 }

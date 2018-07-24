@@ -1,5 +1,7 @@
 package com.charl.blog.common.vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author: charl
  * @create: 2018-07-20 11:13
  **/
+@Data
 public class ResponseVo implements Serializable {
 
     private int code;
@@ -43,30 +46,6 @@ public class ResponseVo implements Serializable {
 
     public static ResponseVo buildFailedInstance(String msg) {
         return new ResponseVo(1, msg, null);
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
     }
 
 }

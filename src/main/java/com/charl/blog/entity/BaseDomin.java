@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @program: blog
@@ -34,12 +34,12 @@ public class BaseDomin implements Serializable {
      * 添加时间
      */
     @Column(name = "add_time")
-    private Date addTime;
+    private LocalDateTime addTime;
 
     /**
      * 更新时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
 }
