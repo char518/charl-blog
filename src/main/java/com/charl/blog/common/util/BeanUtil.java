@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * @program: blog
- * @description:
+ * @description: 拷贝的对象属性必须要实现get和set方法，不然无法进行拷贝
  * @author: charl
  * @create: 2018-07-20 11:03
  **/
