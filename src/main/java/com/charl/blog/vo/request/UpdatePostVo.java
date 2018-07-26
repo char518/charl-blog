@@ -2,6 +2,7 @@ package com.charl.blog.vo.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
  * @author: charl
  * @create: 2018-07-24 16:35
  **/
+@Data
 @ApiModel(description = "修改博客")
 public class UpdatePostVo {
 

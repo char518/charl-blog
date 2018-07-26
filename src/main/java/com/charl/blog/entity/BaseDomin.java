@@ -1,10 +1,13 @@
 package com.charl.blog.entity;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @program: blog
@@ -14,6 +17,7 @@ import java.time.LocalDateTime;
  **/
 @Data
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class BaseDomin implements Serializable {
 
     /**
@@ -34,12 +38,14 @@ public class BaseDomin implements Serializable {
      * 添加时间
      */
     @Column(name = "add_time")
-    private LocalDateTime addTime;
+    @CreatedDate
+    private Date addTime;
 
     /**
      * 更新时间
      */
     @Column(name = "update_time")
-    private LocalDateTime updateTime;
+    @LastModifiedDate
+    private Date updateTime;
 
 }

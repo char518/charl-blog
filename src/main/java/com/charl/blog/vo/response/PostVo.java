@@ -1,9 +1,12 @@
 package com.charl.blog.vo.response;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * @program: blog
@@ -11,6 +14,8 @@ import java.time.format.DateTimeFormatter;
  * @author: charl
  * @create: 2018-07-24 17:17
  **/
+@ApiModel(description = "帖子返回VO")
+@Data
 public class PostVo {
 
     @ApiModelProperty("主键ID")
@@ -32,21 +37,23 @@ public class PostVo {
     private Integer visits;
 
     @ApiModelProperty("添加时间")
-    private LocalDateTime addTime;
+    private Date addTime;
 
     private String addTimeStr;
 
     @ApiModelProperty("更新时间")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     private String updateTimeStr;
 
     public String getAddTimeStr() {
-        return DateTimeFormatter.ofPattern("YYYY-MM-dd:HH:mm:ss").format(addTime);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(addTime);
     }
 
     public String getUpdateTimeStr() {
-        return DateTimeFormatter.ofPattern("YYYY-MM-dd:HH:mm:ss").format(updateTime);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(updateTime);
     }
 
 }

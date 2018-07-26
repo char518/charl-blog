@@ -1,11 +1,10 @@
 package com.charl.blog.service;
 
+import com.charl.blog.common.vo.BasePageRespVo;
 import com.charl.blog.vo.request.AddPostVo;
 import com.charl.blog.vo.request.QueryPostsVo;
 import com.charl.blog.vo.request.UpdatePostVo;
 import com.charl.blog.vo.response.PostVo;
-
-import java.util.List;
 
 /**
  * @program: blog
@@ -19,7 +18,7 @@ public interface IPostService {
 
     int updatePost(UpdatePostVo vo);
 
-    List<PostVo> queryList(QueryPostsVo vo);
+    BasePageRespVo<PostVo> queryList(QueryPostsVo vo);
 
 
 }

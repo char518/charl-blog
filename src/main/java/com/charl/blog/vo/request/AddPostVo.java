@@ -2,6 +2,7 @@ package com.charl.blog.vo.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 /**
  * @program: blog
@@ -9,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author: charl
  * @create: 2018-07-24 16:35
  **/
+@Data
 @ApiModel(description = "添加博客")
 public class AddPostVo {
 

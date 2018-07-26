@@ -1,6 +1,7 @@
 package com.charl.blog.service.impl;
 
 import com.charl.blog.common.util.BeanUtil;
+import com.charl.blog.common.vo.BasePageRespVo;
 import com.charl.blog.dao.PostsRepository;
 import com.charl.blog.entity.Posts;
 import com.charl.blog.service.IPostService;
@@ -9,11 +10,20 @@ import com.charl.blog.vo.request.QueryPostsVo;
 import com.charl.blog.vo.request.UpdatePostVo;
 import com.charl.blog.vo.response.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,15 +56,28 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<PostVo> queryList(QueryPostsVo vo) {
+    public BasePageRespVo<PostVo> queryList(QueryPostsVo vo) {
+        Pageable pageable = PageRequest.of(vo.getPageNo() - 1, vo.getPageSize(), Sort.Direction.DESC, "addTime");
 
-        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("title", match -> match.endsWith()).withMatcher("author", match -> match.startsWith());
+        //构建查询条件
+        Specification<Posts> specification = new Specification<Posts>() {
+            @Override
+            public Predicate toPredicate(Root<Posts> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> list = new ArrayList<Predicate>();
+                if (!StringUtils.isEmpty(vo.getTitle())) {
+                    list.add(criteriaBuilder.like(root.get("title").as(String.class),"%"+ vo.getTitle() + "%"));
+                }
+                if (null != vo.getAddTime()) {
+                    list.add(criteriaBuilder.equal(root.get("addTime").as(Date.class), vo.getAddTime()));
+                }
+                Predicate[] p = new Predicate[list.size()];
+                return criteriaBuilder.and(list.toArray(p));
+            }
+        };
 
-        Example<QueryPostsVo> of = Example.of(vo, matcher);
+        Page<Posts> all = postsRepository.findAll(specification, pageable);
 
-        List<Posts> all = postsRepository.findAll();
-
-        List<PostVo> postVos = BeanUtil.copyList(all, PostVo.class);
-        return postVos;
+        List<PostVo> postVos = BeanUtil.copyList(all.getContent(), PostVo.class);
+        return BasePageRespVo.buildBaseResp(postVos, (int) all.getTotalElements());
     }
 }
